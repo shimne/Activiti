@@ -71,7 +71,7 @@ public class FormPropertyHandler {
     return formProperty;
   }
 
-  public void submitFormProperty(ExecutionEntity execution, Map<String, String> properties) {
+  public void submitFormProperty(ExecutionEntity execution, Map<String, Object> properties) {
     if (!isWritable && properties.containsKey(id)) {
       throw new ActivitiException("form property '"+id+"' is not writable");
     }
@@ -82,7 +82,7 @@ public class FormPropertyHandler {
     
     Object modelValue = null;
     if (properties.containsKey(id)) {
-      final String propertyValue = properties.remove(id);
+      final Object propertyValue = properties.remove(id);
       if (type != null) {
         modelValue = type.convertFormValueToModelValue(propertyValue);
       } else {

@@ -26,6 +26,6 @@ public interface HistoricFormProperty extends HistoricDetail {
   String getPropertyId();
 
   /** the submitted value */
-  String getPropertyValue();
+  Object getPropertyValue();
 
 }

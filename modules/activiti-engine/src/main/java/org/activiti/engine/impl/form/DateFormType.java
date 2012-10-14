@@ -44,12 +44,12 @@ public class DateFormType extends AbstractFormType {
     return null;
   }
 
-  public Object convertFormValueToModelValue(String propertyValue) {
+  public Object convertFormValueToModelValue(Object propertyValue) {
     if (propertyValue==null || "".equals(propertyValue)) {
       return null;
     }
     try {
-      return dateFormat.parseObject(propertyValue);
+      return dateFormat.parseObject(propertyValue.toString());
     } catch (ParseException e) {
       throw new ActivitiException("invalid date value "+propertyValue);
     }

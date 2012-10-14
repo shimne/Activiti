@@ -118,7 +118,7 @@ public class FormServiceTest extends PluggableActivitiTestCase {
     Object renderedStartForm = formService.getRenderedStartForm(procDefId);
     assertEquals("start form content", renderedStartForm);
 
-    Map<String, String> properties = new HashMap<String, String>();
+    Map<String, Object> properties = new HashMap<String, Object>();
     properties.put("room", "5b");
     properties.put("speaker", "Mike");
     String processInstanceId = formService.submitStartFormData(procDefId, properties).getId();
@@ -140,7 +140,7 @@ public class FormServiceTest extends PluggableActivitiTestCase {
 
     assertEquals("Mike is speaking in room 5b", formService.getRenderedTaskForm(taskId));
 
-    properties = new HashMap<String, String>();
+    properties = new HashMap<String, Object>();
     properties.put("room", "3f");
     formService.submitTaskFormData(taskId, properties);
 
@@ -154,7 +154,7 @@ public class FormServiceTest extends PluggableActivitiTestCase {
 
   @Deployment
   public void testFormPropertyHandling() {
-    Map<String, String> properties = new HashMap<String, String>();
+    Map<String, Object> properties = new HashMap<String, Object>();
     properties.put("room", "5b"); // default
     properties.put("speaker", "Mike"); // variable name mapping
     properties.put("duration", "45"); // type conversion
@@ -203,14 +203,14 @@ public class FormServiceTest extends PluggableActivitiTestCase {
     assertEquals(5, formProperties.size());
 
     try {
-      formService.submitTaskFormData(taskId, new HashMap<String, String>());
+      formService.submitTaskFormData(taskId, new HashMap<String, Object>());
       fail("expected exception about required form property 'street'");
     } catch (ActivitiException e) {
       // OK
     }
 
     try {
-      properties = new HashMap<String, String>();
+      properties = new HashMap<String, Object>();
       properties.put("speaker", "its not allowed to update speaker!");
       formService.submitTaskFormData(taskId, properties);
       fail("expected exception about a non writable form property 'speaker'");
@@ -218,7 +218,7 @@ public class FormServiceTest extends PluggableActivitiTestCase {
       // OK
     }
 
-    properties = new HashMap<String, String>();
+    properties = new HashMap<String, Object>();
     properties.put("street", "rubensstraat");
     formService.submitTaskFormData(taskId, properties);
 
@@ -263,9 +263,9 @@ public class FormServiceTest extends PluggableActivitiTestCase {
     assertTrue(property.isWritable());
     assertFalse(property.isRequired());
     assertEquals("enum", property.getType().getName());
-    Map<String, String> values = (Map<String, String>) property.getType().getInformation("values");
+    Map<String, Object> values = (Map<String, Object>) property.getType().getInformation("values");
 
-    Map<String, String> expectedValues = new HashMap<String, String>();
+    Map<String, Object> expectedValues = new HashMap<String, Object>();
     expectedValues.put("left", "Go Left");
     expectedValues.put("right", "Go Right");
     expectedValues.put("up", "Go Up");
@@ -285,7 +285,7 @@ public class FormServiceTest extends PluggableActivitiTestCase {
   
   @Deployment
   public void testSubmitStartFormDataWithBusinessKey() {
-    Map<String, String> properties = new HashMap<String, String>();
+    Map<String, Object> properties = new HashMap<String, Object>();
     properties.put("duration", "45");
     properties.put("speaker", "Mike");
     String procDefId = repositoryService.createProcessDefinitionQuery().singleResult().getId();

@@ -42,7 +42,7 @@ public class EnumFormType extends AbstractFormType {
   }
 
   @Override
-  public Object convertFormValueToModelValue(String propertyValue) {
+  public Object convertFormValueToModelValue(Object propertyValue) {
     validateValue(propertyValue);
     return propertyValue;
   }
@@ -58,7 +58,7 @@ public class EnumFormType extends AbstractFormType {
     return (String) modelValue;
   }
   
-  protected void validateValue(String value) {
+  protected void validateValue(Object value) {
     if(value != null) {
       if(values != null && !values.containsKey(value)) {
         throw new ActivitiException("Invalid value for enum form property: " + value);

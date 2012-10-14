@@ -28,7 +28,7 @@ public class StringFormType extends AbstractFormType {
     return "text/plain";
   }
 
-  public Object convertFormValueToModelValue(String propertyValue) {
+  public Object convertFormValueToModelValue(Object propertyValue) {
     return propertyValue;
   }
 

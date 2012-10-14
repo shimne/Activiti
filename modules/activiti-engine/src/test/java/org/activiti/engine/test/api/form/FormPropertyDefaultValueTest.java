@@ -37,7 +37,7 @@ public class FormPropertyDefaultValueTest extends PluggableActivitiTestCase {
       }
     }
 
-    Map<String, String> formDataUpdate = new HashMap<String, String>();
+    Map<String, Object> formDataUpdate = new HashMap<String, Object>();
     formDataUpdate.put("longExpressionProperty", "1");
     formDataUpdate.put("booleanProperty", "false");
     formService.submitTaskFormData(task.getId(), formDataUpdate);
@@ -77,7 +77,7 @@ public class FormPropertyDefaultValueTest extends PluggableActivitiTestCase {
     }
 
     // Override 2 properties. The others should pe posted as the default-value
-    Map<String, String> formDataUpdate = new HashMap<String, String>();
+    Map<String, Object> formDataUpdate = new HashMap<String, Object>();
     formDataUpdate.put("longExpressionProperty", "1");
     formDataUpdate.put("booleanProperty", "false");
     ProcessInstance processInstance = formService.submitStartFormData(processDefinitionId, formDataUpdate);

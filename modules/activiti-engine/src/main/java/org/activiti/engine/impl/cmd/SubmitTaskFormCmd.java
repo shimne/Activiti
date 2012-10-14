@@ -36,9 +36,9 @@ public class SubmitTaskFormCmd implements Command<Object>, Serializable {
 
   private static final long serialVersionUID = 1L;
   protected String taskId;
-  protected Map<String, String> properties;
+  protected Map<String, Object> properties;
   
-  public SubmitTaskFormCmd(String taskId, Map<String, String> properties) {
+  public SubmitTaskFormCmd(String taskId, Map<String, Object> properties) {
     this.taskId = taskId;
     this.properties = properties;
   }
@@ -62,7 +62,7 @@ public class SubmitTaskFormCmd implements Command<Object>, Serializable {
     if (historyLevel>=ProcessEngineConfigurationImpl.HISTORYLEVEL_AUDIT && execution != null) {
       DbSqlSession dbSqlSession = commandContext.getSession(DbSqlSession.class);
       for (String propertyId: properties.keySet()) {
-        String propertyValue = properties.get(propertyId);
+        Object propertyValue = properties.get(propertyId);
         HistoricFormPropertyEntity historicFormProperty = new HistoricFormPropertyEntity(execution, propertyId, propertyValue, taskId);
         dbSqlSession.insert(historicFormProperty);
       }

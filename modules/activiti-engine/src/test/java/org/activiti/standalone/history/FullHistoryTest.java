@@ -387,7 +387,7 @@ public class FullHistoryTest extends ResourceActivitiTestCase {
     
     ClockUtil.setCurrentTime(startedDate);
     
-    Map<String, String> formProperties = new HashMap<String, String>();
+    Map<String, Object> formProperties = new HashMap<String, Object>();
     formProperties.put("formProp1", "Activiti rocks");
     formProperties.put("formProp2", "12345");
     
@@ -407,7 +407,7 @@ public class FullHistoryTest extends ResourceActivitiTestCase {
     String taskActivityId = activityIds.get(0);
    
     // Submit form properties
-    formProperties = new HashMap<String, String>();
+    formProperties = new HashMap<String, Object>();
     formProperties.put("formProp3", "Activiti still rocks!!!");
     formProperties.put("formProp4", "54321");
     formService.submitTaskFormData(task.getId(), formProperties);
@@ -532,7 +532,7 @@ public class FullHistoryTest extends ResourceActivitiTestCase {
   @Deployment(
     resources={"org/activiti/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testHistoricFormPropertiesQuery() throws Exception {
-    Map<String, String> formProperties = new HashMap<String, String>();
+    Map<String, Object> formProperties = new HashMap<String, Object>();
     formProperties.put("stringVar", "activiti rocks!");
     formProperties.put("longVar", "12345");
     
@@ -549,7 +549,7 @@ public class FullHistoryTest extends ResourceActivitiTestCase {
 
     // Complete the task by submitting the task properties
     Task task = taskService.createTaskQuery().singleResult();
-    formProperties = new HashMap<String, String>();
+    formProperties = new HashMap<String, Object>();
     formProperties.put("taskVar", "task form property");
     formService.submitTaskFormData(task.getId(), formProperties);
 
@@ -597,7 +597,7 @@ public class FullHistoryTest extends ResourceActivitiTestCase {
     resources={"org/activiti/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testHistoricFormPropertySorting() throws Exception {
     
-    Map<String, String> formProperties = new HashMap<String, String>();
+    Map<String, Object> formProperties = new HashMap<String, Object>();
     formProperties.put("stringVar", "activiti rocks!");
     formProperties.put("longVar", "12345");
     
@@ -624,7 +624,7 @@ public class FullHistoryTest extends ResourceActivitiTestCase {
   @Deployment
   public void testHistoricDetailQueryMixed() throws Exception {
     
-    Map<String, String> formProperties = new HashMap<String, String>();
+    Map<String, Object> formProperties = new HashMap<String, Object>();
     formProperties.put("formProp1", "activiti rocks!");
     formProperties.put("formProp2", "12345");
     
@@ -831,7 +831,7 @@ public class FullHistoryTest extends ResourceActivitiTestCase {
     assertNotNull(processInstance);
     
     // Submit form on task
-    Map<String, String> data = new HashMap<String, String>();
+    Map<String, Object> data = new HashMap<String, Object>();
     data.put("formProp1", "Property value");
     
     Task task = taskService.createTaskQuery().processInstanceId(processInstance.getId()).singleResult();

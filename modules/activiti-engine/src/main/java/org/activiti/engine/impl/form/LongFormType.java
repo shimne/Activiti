@@ -28,11 +28,11 @@ public class LongFormType extends AbstractFormType {
     return "plain/text";
   }
 
-  public Object convertFormValueToModelValue(String propertyValue) {
+  public Object convertFormValueToModelValue(Object propertyValue) {
     if (propertyValue==null || "".equals(propertyValue)) {
       return null;
     }
-    return new Long(propertyValue);
+    return new Long(propertyValue.toString());
   }
 
   public String convertModelValueToFormValue(Object modelValue) {

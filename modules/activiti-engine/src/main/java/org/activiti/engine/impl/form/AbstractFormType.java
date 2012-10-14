@@ -21,7 +21,7 @@ import org.activiti.engine.form.FormType;
  */
 public abstract class AbstractFormType implements FormType {
 
-  public abstract Object convertFormValueToModelValue(String propertyValue);
+  public abstract Object convertFormValueToModelValue(Object propertyValue);
 
   public abstract String convertModelValueToFormValue(Object modelValue);
 

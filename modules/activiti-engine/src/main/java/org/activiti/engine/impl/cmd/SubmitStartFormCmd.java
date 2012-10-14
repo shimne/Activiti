@@ -37,9 +37,9 @@ public class SubmitStartFormCmd implements Command<ProcessInstance>, Serializabl
   private static final long serialVersionUID = 1L;
   protected String processDefinitionId;
   protected final String businessKey;
-  protected Map<String, String> properties;
+  protected Map<String, Object> properties;
   
-  public SubmitStartFormCmd(String processDefinitionId, String businessKey, Map<String, String> properties) {
+  public SubmitStartFormCmd(String processDefinitionId, String businessKey, Map<String, Object> properties) {
     this.processDefinitionId = processDefinitionId;
 	this.businessKey = businessKey;
     this.properties = properties;
@@ -67,7 +67,7 @@ public class SubmitStartFormCmd implements Command<ProcessInstance>, Serializabl
 
       if (historyLevel>=ProcessEngineConfigurationImpl.HISTORYLEVEL_AUDIT) {
         for (String propertyId: properties.keySet()) {
-          String propertyValue = properties.get(propertyId);
+          Object propertyValue = properties.get(propertyId);
           HistoricFormPropertyEntity historicFormProperty = new HistoricFormPropertyEntity(processInstance, propertyId, propertyValue);
           dbSqlSession.insert(historicFormProperty);
         }

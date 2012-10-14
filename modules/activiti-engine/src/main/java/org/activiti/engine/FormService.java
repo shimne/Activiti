@@ -37,7 +37,7 @@ public interface FormService {
   Object getRenderedStartForm(String processDefinitionId, String formEngineName);
   
   /** Start a new process instance with the user data that was entered as properties in a start form. */  
-  ProcessInstance submitStartFormData(String processDefinitionId, Map<String, String> properties);
+  ProcessInstance submitStartFormData(String processDefinitionId, Map<String, Object> properties);
   
   /** 
    * Start a new process instance with the user data that was entered as properties in a start form. 
@@ -58,7 +58,7 @@ public interface FormService {
    *                    given process definition.
    * @param properties the properties to pass, can be null.
    */  
-  ProcessInstance submitStartFormData(String processDefinitionId, String businessKey, Map<String, String> properties);
+  ProcessInstance submitStartFormData(String processDefinitionId, String businessKey, Map<String, Object> properties);
 
   /** Retrieves all data necessary for rendering a form to complete a task.  This can be used to perform rendering of the forms outside of the process engine. */
   TaskFormData getTaskFormData(String taskId);
@@ -70,5 +70,5 @@ public interface FormService {
   Object getRenderedTaskForm(String taskId, String formEngineName);
   
   /** Completes a task with the user data that was entered as properties in a task form. */  
-  void submitTaskFormData(String taskId, Map<String, String> properties);
+  void submitTaskFormData(String taskId, Map<String, Object> properties);
 }
