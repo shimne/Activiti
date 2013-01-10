@@ -77,7 +77,7 @@
   <!-- HISTORIC VARIABLE SELECT -->
 
   <select id="selectHistoricVariableInstanceByQueryCriteria" parameterType="org.activiti.engine.impl.HistoricVariableInstanceQueryImpl" resultMap="historicProcessVariableResultMap">
-  	${limitBefore}
+    ${limitBefore}
     select RES.* ${limitBetween}
     <include refid="selectHistoricVariableInstanceByQueryCriteriaSql"/>
     ${orderBy}
@@ -94,6 +94,9 @@
     <where>
       <if test="processInstanceId != null">
         RES.PROC_INST_ID_ = #{processInstanceId}
+      </if>
+      <if test="taskId != null">
+        RES.TASK_ID_ = #{taskId}
       </if>
       <if test="variableName != null">
         and RES.NAME_ = #{variableName}
